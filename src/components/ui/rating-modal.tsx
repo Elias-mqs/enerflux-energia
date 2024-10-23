@@ -9,6 +9,8 @@ import { getCsrfToken } from 'next-auth/react'
 import { MdClose, MdOutlineStarBorder, MdStar } from 'react-icons/md'
 import { toast } from 'react-toastify'
 
+import { getBaseUrl } from '@/lib/client'
+
 import { useRatingMutations } from '../rating-mutations'
 
 interface RatingModalProps {
@@ -30,7 +32,7 @@ export function RatingModal({ userSession, companyId, setRatingModal }: RatingMo
     queryKey: ['check-has-evalueted', 'get-review', companyId],
     queryFn: async () => {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/get-review?companyId=${companyId}&userEmail=${userSession.user?.email}`,
+        `${getBaseUrl()}get-review?companyId=${companyId}&userEmail=${userSession.user?.email}`,
       )
 
       const responseData: { userRating: number } | null = response.data

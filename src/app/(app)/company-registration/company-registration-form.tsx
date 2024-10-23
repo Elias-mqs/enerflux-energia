@@ -12,6 +12,8 @@ import { LuUpload } from 'react-icons/lu'
 import { toast } from 'react-toastify'
 import { z } from 'zod'
 
+import { getBaseUrl } from '@/lib/client'
+
 const registerSchema = z.object({
   name: z.string().min(3, 'O nome deve ter pelo menos 3 caracteres'),
   state: z.string().min(2, 'O estado deve ter pelo menos 2 caracteres').toUpperCase(),
@@ -55,7 +57,7 @@ export function RegistrationForm({ userToken }: { userToken: string }) {
   /// Função para envio do formulário para a api
   const { mutateAsync: createCompany } = useMutation({
     mutationFn: async (companyData: FormData) => {
-      await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/company-registration`, companyData, {
+      await axios.post(`${getBaseUrl()}company-registration`, companyData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${userToken}`,
