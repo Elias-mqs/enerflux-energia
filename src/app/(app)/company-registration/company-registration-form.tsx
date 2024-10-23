@@ -55,7 +55,7 @@ export function RegistrationForm({ userToken }: { userToken: string }) {
   /// Função para envio do formulário para a api
   const { mutateAsync: createCompany } = useMutation({
     mutationFn: async (companyData: FormData) => {
-      await axios.post(`company-registration`, companyData, {
+      await axios.post(`api/company-registration`, companyData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${userToken}`,

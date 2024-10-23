@@ -7,7 +7,7 @@ export function useRatingMutations() {
   // Função para envio da avaliação e atualização de querie de busca
   const { mutateAsync: submitReview } = useMutation({
     mutationFn: async ({ formData, userToken }: { formData: FormData; userToken: string }) => {
-      await axios.post(`register-evaluation`, formData, {
+      await axios.post(`api/register-evaluation`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${userToken}`,
@@ -22,7 +22,7 @@ export function useRatingMutations() {
   // Função para envio da atualização da avaliação e atualização da querie de busca
   const { mutateAsync: evaluationUpdate } = useMutation({
     mutationFn: async ({ formData, userToken }: { formData: FormData; userToken: string }) => {
-      await axios.patch(`rating-update`, formData, {
+      await axios.patch(`api/rating-update`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${userToken}`,

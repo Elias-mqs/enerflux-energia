@@ -29,7 +29,7 @@ export function RatingModal({ userSession, companyId, setRatingModal }: RatingMo
   const { data: reviews } = useQuery({
     queryKey: ['check-has-evalueted', 'get-review', companyId],
     queryFn: async () => {
-      const response = await axios.get(`get-review?companyId=${companyId}&userEmail=${userSession.user?.email}`)
+      const response = await axios.get(`api/get-review?companyId=${companyId}&userEmail=${userSession.user?.email}`)
 
       const responseData: { userRating: number } | null = response.data
 

@@ -28,7 +28,7 @@ export function SupplierList() {
     queryKey: ['search-supplier', 'list-companies', searchParams.get('min-kwh')],
     queryFn: async () => {
       try {
-        const response = await axios.get(`get-companies?min-kwh=${searchParams.get('min-kwh')}`)
+        const response = await axios.get(`api/get-companies?min-kwh=${searchParams.get('min-kwh')}`)
         return response.data as CompanyPropsTeste[]
       } catch (err) {
         console.error('Erro com requisição, contate o suporte', err)
