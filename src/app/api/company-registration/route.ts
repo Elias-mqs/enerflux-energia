@@ -4,7 +4,6 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
-import { env } from '@/env'
 import { prisma } from '@/lib/prisma'
 
 // Criando o esquema de validação
@@ -46,10 +45,10 @@ export async function POST(request: NextRequest) {
   }
 
   const s3 = new S3Client({
-    region: env.AWS_DEFAULT_REGION,
+    region: process.env.AWS_DEFAULT_REGION as string,
     credentials: {
-      accessKeyId: env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
     },
   })
 
