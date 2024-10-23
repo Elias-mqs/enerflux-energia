@@ -1,13 +1,11 @@
 import crypto from 'crypto'
 
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
-import { PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
 import { env } from '@/env'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 // Criando o esquema de validação
 const companySchema = z.object({

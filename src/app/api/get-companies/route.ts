@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client'
 import { NextResponse, NextRequest } from 'next/server'
 import { z } from 'zod'
 
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 // Define o schema Zod para validar o valor de minKwh
 const minKwhSchema = z.number().int()

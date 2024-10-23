@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 // Esquema de validação para o FormData
 const formDataSchema = z.object({
