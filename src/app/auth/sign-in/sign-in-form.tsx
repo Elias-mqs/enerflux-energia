@@ -25,8 +25,8 @@ export function SignInForm() {
   } = useForm<SignInFormSchema>({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
-      email: 'admin@enerflux.team',
-      password: '123456',
+      email: '',
+      password: '',
     },
   })
 
