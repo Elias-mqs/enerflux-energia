@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id      String          @id @default(uuid())
+  name    String
+  state   String
+  clients Int?
+  minKwh  Int             @map("minimum_kwh")
+  costKwh Float
+  logoImg String
+  reviews CompanyReview[] // Relacionamento com a tabela de avaliações
+
+  @@index([name])
+}
+
+model CompanyReview {
+  id        String   @id @default(uuid())
+  companyId String
+  userEmail String
+  rating    Int // Avaliação numérica (ex: 1 a 5)
+  createdAt DateTime @default(now())
+
+  company Company @relation(fields: [companyId], references: [id]) // Relacionamento com a empresa
+}

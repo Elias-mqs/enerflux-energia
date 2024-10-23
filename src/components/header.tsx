@@ -2,21 +2,34 @@
 
 import { useState } from 'react'
 
+import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { MdMenu } from 'react-icons/md'
 import { twMerge } from 'tailwind-merge'
 
+import { LargeHeaderButtons } from './ui/large-header-buttons'
+import { SmallHeaderButtons } from './ui/small-header-buttons'
+
 export function Header() {
+  const pathname = usePathname()
+
+  // Controla se abertura e fechamento
   const [isOpen, setIsOpen] = useState(false)
 
+  const restrictedArea = pathname === '/company-registration'
+
   return (
-    <header className="flex w-full items-center justify-center border-b bg-gradient-to-r from-blue-600 to-blue-950">
-      <div className="flex h-auto min-h-20 w-full max-w-screen-xl flex-col-reverse items-center justify-between px-8 py-4 md:h-20 md:flex-row md:py-0">
-        <div className="flex w-full justify-between md:w-auto">
+    <header className="static top-0 flex w-full items-center justify-center border-b bg-gradient-to-r from-blue-600 to-blue-950 sm:sticky">
+      <div className="flex h-auto min-h-20 w-full max-w-screen-xl flex-col-reverse items-center justify-between px-4 py-4 md:h-20 md:flex-row md:px-8 md:py-0">
+        <div className={twMerge('flex w-full justify-between md:w-auto', restrictedArea ? 'mt-[-20px] md:mt-0' : '')}>
           <button>
-            <Link href="/">
-              <h1 className="font-mono text-xl font-bold text-blue-100">Enerflux</h1>
-              <h1 className="font-mono text-xl text-blue-100">energia</h1>
+            <Link href="/" className="flex">
+              <Image alt="logo-header" src="/img/logo.png" width={60} height={50} />
+              <div className="ml-2">
+                <h1 className="mb-[-6px] mt-2 font-mono text-lg font-bold text-sky-100">Enerflux</h1>
+                <h1 className="font-mono text-lg text-sky-100">energia</h1>
+              </div>
             </Link>
           </button>
 
@@ -25,32 +38,9 @@ export function Header() {
           </button>
         </div>
 
-        <div className="hidden items-center justify-end space-x-16 md:flex">
-          <button className="font-bold text-blue-200 transition-transform hover:scale-110">Buscar fornecedores</button>
-          <button className="font-bold text-blue-200 transition-transform hover:scale-110">Opções</button>
+        <LargeHeaderButtons restrictedArea={restrictedArea} />
 
-          <button className="rounded-3xl px-6 py-1 text-blue-300 transition-transform hover:scale-110">
-            <Link href="/" prefetch={false}>
-              Área Restrita
-            </Link>
-          </button>
-        </div>
-
-        <div
-          className={twMerge(
-            'mb-4 flex max-h-full flex-col-reverse items-center justify-center gap-4 transition-all md:hidden',
-            isOpen ? 'h-full' : 'm-[-2] h-0 overflow-hidden',
-          )}
-        >
-          <button className="font-bold text-blue-200 transition-transform hover:scale-110">Buscar fornecedores</button>
-          <button className="font-bold text-blue-200 transition-transform hover:scale-110">Opções</button>
-
-          <button className="rounded-3xl px-6 py-1 text-blue-300 transition-transform hover:scale-110">
-            <Link href="/upload" prefetch={false}>
-              Área Restrita
-            </Link>
-          </button>
-        </div>
+        <SmallHeaderButtons isOpen={isOpen} restrictedArea={restrictedArea} />
       </div>
     </header>
   )

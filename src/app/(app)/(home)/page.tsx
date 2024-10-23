@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { EnerfluxBenefits } from '@/components/enerflux-benefits'
 import { HeroSection } from '@/components/hero-section'
 import { HowToUse } from '@/components/how-to-use'
@@ -20,12 +22,19 @@ export default function Home() {
           <HowToUse />
         </section>
 
-        <section className="flex w-full max-w-screen-xl flex-col items-center px-8 py-12 md:flex-row md:px-0">
-          <UserAction />
+        <section
+          id="user-action"
+          className="flex w-full max-w-screen-xl flex-col items-center px-8 py-12 md:flex-row md:px-0"
+        >
+          <Suspense>
+            <UserAction />
+          </Suspense>
         </section>
 
         <section className="flex w-full justify-center border-b bg-gradient-to-br from-blue-600 to-blue-950">
-          <SupplierList />
+          <Suspense>
+            <SupplierList />
+          </Suspense>
         </section>
       </div>
     </main>

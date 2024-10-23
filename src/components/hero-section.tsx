@@ -6,8 +6,8 @@ import { LuFileSearch } from 'react-icons/lu'
 export function HeroSection() {
   return (
     <>
-      <div className="absolute z-10 flex h-full w-full max-w-7xl flex-col items-center px-8 pt-16">
-        <h1 className="text-center text-2xl font-bold leading-tight text-white sm:max-w-3xl sm:text-3xl lg:text-5xl">
+      <div className="absolute flex h-full w-full max-w-7xl flex-col items-center px-8 pt-16">
+        <h1 className="text-center text-2xl font-bold leading-tight text-white sm:max-w-7xl sm:text-3xl lg:text-5xl">
           Compare, economize e <span className="text-yellow-400">escolha o fornecedor</span> de energia{' '}
           <span className="text-green-400">ideal</span>!
         </h1>
@@ -30,13 +30,12 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute inset-0">
+      <div>
         <Image
           alt="background-hero"
           src="/img/background-hero.png"
           layout="fill"
-          objectFit="cover"
-          style={{ opacity: 0.2 }}
+          style={{ opacity: 0.2, objectFit: 'cover' }}
         />
       </div>
     </>

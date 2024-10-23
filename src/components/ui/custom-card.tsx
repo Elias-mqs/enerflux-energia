@@ -1,25 +1,21 @@
+'use client'
+
+import { useState } from 'react'
+
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar'
 import * as Dialog from '@radix-ui/react-dialog'
 import { FaArrowRightLong } from 'react-icons/fa6'
 import { MdOutlineStarBorder, MdStar, MdStarHalf } from 'react-icons/md'
 
+import { CompanyPropsTeste } from '../supplier-list'
+
 import { CompanyProfile } from './company-profile'
 
-interface CustomCardProps {
-  companyData: {
-    name: string
-    srcLogo: string
-    rating: number
-    state: string // Estado de origem
-    costPerKwh: number // Custo por kWh
-    minKwh: number // Limite mínimo de kWh
-    totalClients: number // Número total de clientes
-  }
-}
+export function CustomCard({ companyData }: { companyData: CompanyPropsTeste }) {
+  const [cardModalOpen, setCardModalOpen] = useState(false)
 
-export function CustomCard({ companyData }: CustomCardProps) {
   // Arredonda a nota para o valor mais próximo de 0.5
-  const roundedRating = Math.round(companyData.rating * 2) / 2
+  const roundedRating = Math.round(companyData.averageRating * 2) / 2
 
   // Calcula quantas estrelas cheias, meias estrelas e vazias devem ser renderizadas
   const fullStars = Math.floor(roundedRating)
@@ -27,11 +23,14 @@ export function CustomCard({ companyData }: CustomCardProps) {
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0)
 
   return (
-    <Dialog.Root>
+    <Dialog.Root open={cardModalOpen} onOpenChange={setCardModalOpen}>
       <Dialog.Trigger asChild>
-        <div className="flex max-h-28 min-h-24 min-w-full max-w-md cursor-pointer rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 p-4 shadow-sm transition-all hover:shadow-md">
-          <Avatar className="flex w-24 items-center">
-            <AvatarImage className="size-16 rounded-full" src={companyData.srcLogo} />
+        <div
+          onClick={() => setCardModalOpen(true)}
+          className="flex max-h-28 min-h-24 min-w-full max-w-md cursor-pointer rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 p-4 shadow-sm transition-all hover:shadow-md"
+        >
+          <Avatar className="flex items-center">
+            <AvatarImage className="size-16 min-w-16 rounded-full" src={companyData.logoImg} />
           </Avatar>
 
           <div className="ml-6 flex w-full flex-col justify-between">
@@ -64,6 +63,7 @@ export function CustomCard({ companyData }: CustomCardProps) {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50" />
         <Dialog.Content className="fixed inset-0 flex items-center justify-center">
+          <Dialog.DialogDescription></Dialog.DialogDescription>
           <CompanyProfile companyData={companyData} />
         </Dialog.Content>
       </Dialog.Portal>

@@ -52,7 +52,7 @@ export function HowToUse() {
       </div>
 
       <aside className="mt-12 flex flex-col justify-center px-8">
-        <p className="mb-4 text-lg text-gray-200">
+        <p className="mb-4 text-center text-lg text-gray-200">
           Experimente nossa ferramenta de simulação ajustando o{' '}
           <span className="font-bold text-yellow-300">consumo</span> de energia para ver as melhores ofertas.
         </p>
