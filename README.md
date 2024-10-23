@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Enerflux Energia
 
-## Getting Started
+Este projeto, **Enerflux Energia**, foi desenvolvido como parte de um desafio técnico para Clarke Energia. Ele permite que os usuários informem seu consumo mensal de energia e, com base em critérios de consumo mínimo e outras informações, o sistema retorna uma lista de fornecedores capazes de atender à demanda.
 
-First, run the development server:
+## Funcionalidades
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- O usuário deve inserir o consumo mensal de energia (exemplo: **30.000 kWh**).
+- O sistema exibe uma lista de fornecedores que podem atender ao consumo informado.
+- Cada fornecedor contém as seguintes informações:
+  - **Nome**
+  - **Logo**
+  - **Estado de origem**
+  - **Custo por kWh**
+  - **Limite mínimo de kWh**
+  - **Número total de clientes**
+  - **Avaliação média dos clientes**
+  
+Um fornecedor só será listado se o consumo informado pelo usuário for maior que o limite mínimo de kWh do fornecedor.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js**: Framework de React para construção de aplicações web.
+- **React**: Biblioteca JavaScript para a criação de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
+- **Node.js**: Ambiente de execução JavaScript no lado do servidor.
+- **Prisma**: ORM (Object-Relational Mapper) para interagir com o banco de dados PostgreSQL.
+- **AWS S3**: Armazenamento na nuvem para as logos dos fornecedores.
+- **PostgreSQL**: Banco de dados relacional utilizado para armazenar as informações dos fornecedores.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Pré-requisitos
 
-## Learn More
+Antes de iniciar, certifique-se de que você tenha o **Node.js** e o **npm** instalados em sua máquina.
 
-To learn more about Next.js, take a look at the following resources:
+## Instalação
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone o repositório:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   git clone https://github.com/Elias-mqs/enerflux-energia.git
 
-## Deploy on Vercel
+2. Entre no diretório do projeto:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   cd enerflux-energia
+   
+3. Instale as dependências necessárias:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npm install
+
+## Rodando o projeto
+
+Após instalar as dependências, inicie o servidor de desenvolvimento:
+
+    npm run dev
+    
+O projeto será iniciado na URL: http://localhost:3000
+
+
+## Banco de Dados
+
+Este projeto utiliza PostgreSQL como banco de dados. Certifique-se de configurar seu banco de dados
+PostgreSQL corretamente e ajustar o arquivo .env com as seguintes variáveis:
+
+    DATABASE_URL=postgresql://[usuário]:[senha]@[host]:[porta]/[nome-do-banco]
+
+## Armazenamento de Logos
+
+As logos dos fornecedores são armazenadas no AWS S3. Certifique-se de configurar as credenciais do
+AWS S3 no arquivo .env:
+
+    AWS_ACCESS_KEY_ID=[sua-access-key]
+    AWS_SECRET_ACCESS_KEY=[seu-secret-key]
+    S3_BUCKET_NAME=[nome-do-bucket]
+    S3_REGION=[região-do-bucket]
+
+## Estrutura de diretórios
+
+- /**app**: Contém as rotas da aplicação.
+
+- /**components**: Componentes de seções principais.
+
+- /**components/ui**: Componentes reutilizáveis da interface de usuário.
+
+- /**prisma**: Definição do esquema do banco de dados.
+
+- /**public**: Armazena arquivos públicos como logos de fornecedores (se aplicável).
+
+- /**lib**: Funções utilitárias e de apoio.
+
+## Contato
+
+Se você tiver alguma dúvida ou quiser discutir sobre o projeto, sinta-se à vontade para me contatar:
+
+- **E-mail**: eliasmqs397@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/elias-marques-b747181b3/
