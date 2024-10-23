@@ -6,8 +6,6 @@ import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { FaArrowTurnUp } from 'react-icons/fa6'
 
-import { getBaseUrl } from '@/lib/client'
-
 import { CustomCard } from './ui/custom-card'
 
 export interface CompanyPropsTeste {
@@ -30,7 +28,7 @@ export function SupplierList() {
     queryKey: ['search-supplier', 'list-companies', searchParams.get('min-kwh')],
     queryFn: async () => {
       try {
-        const response = await axios.get(`${getBaseUrl()}get-companies?min-kwh=${searchParams.get('min-kwh')}`)
+        const response = await axios.get(`get-companies?min-kwh=${searchParams.get('min-kwh')}`)
         return response.data as CompanyPropsTeste[]
       } catch (err) {
         console.error('Erro com requisição, contate o suporte', err)
