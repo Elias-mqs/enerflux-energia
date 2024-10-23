@@ -77,10 +77,10 @@ AWS S3 no arquivo .env:
 ## Estrutura de diretórios
 
 - /**app**: Contém as rotas da aplicação.
+  - **`/api`**: Rotas de apis.
 
 - /**components**: Componentes de seções principais.
-
-- /**components/ui**: Componentes reutilizáveis da interface de usuário.
+  - **`/ui`**: Componentes reutilizáveis da interface de usuário.
 
 - /**prisma**: Definição do esquema do banco de dados.
 
